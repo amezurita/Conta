@@ -6,7 +6,6 @@ const PLM = require("passport-local-mongoose")
 const propertySchema = new Schema({
       name: String,
       rent: Number,
-      tennants: String,
       photo: String,
       bedrooms: Number,
       bathrooms: Number,
@@ -25,7 +24,7 @@ const propertySchema = new Schema({
       incomebal: Number,
       outcomebal: Number,
       owner: String,
-      tennants: {type:Schema.Types.ObjectId, ref:"tennants"},
+      tennants: {type:Schema.Types.ObjectId, ref:"User"},
 
         placeType: {
           type: String,
