@@ -7,6 +7,28 @@ router.get("/owner", async (req, res, next)=>{
     const data = await User.findById(auth)
     res.json(data)
 })
+router.get("/tennant", async (req, res, next)=>{
+    const {auth} = req.headers
+    let data = await User.findById(auth)
+    if (!data) {
+        res.status(400).json({err: "no user found"} )
+        return
+    }
+
+    const property = await Property.findById(data.tenpropId)
+    if (!property) {
+        res.status(400).json({err: "no property found"} )
+        return
+    }
+const result = {
+    name: data.name,
+    email: data.email,
+    property: property
+}
+
+
+    res.json(result)
+})
 
 router.post("/property", async (req, res, next)=>{
     const {data} = req.body

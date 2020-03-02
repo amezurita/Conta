@@ -40,6 +40,7 @@ const uploadCloud = require('../config/cloudinary')
 
 router.post('/signup', (req, res, next) => {
   User.register(req.body, req.body.password)
+  
     .then(user => res.status(201).json({ user }))
     .catch(err => res.status(500).json({ err }))
 })
@@ -116,5 +117,6 @@ router.get('/memes', async (req, res, next) => {
 function isAuth(req, res, next) {
   req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' })
 }
+
 
 module.exports = router
