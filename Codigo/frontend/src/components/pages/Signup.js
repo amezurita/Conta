@@ -1,5 +1,5 @@
-import React from 'react'
-import { MyContext } from '../../context'
+import React from "react";
+import { MyContext } from "../../context";
 import {
   Flex,
   FormControl,
@@ -7,63 +7,66 @@ import {
   InputLeftAddon,
   Input,
   Icon
-} from '@chakra-ui/core'
-import Form from '../Styles/Form'
+} from "@chakra-ui/core";
+import Form from "../Styles/Form";
 import { NavLink } from "react-router-dom";
 
 function Signup() {
   return (
     <MyContext.Consumer>
       {context => (
-        <div style={{backgroundColor:"red", color:"black"}}>
-        <Flex w="100vw" h="100vh" align="center" justify="center" direction="column">
-          <Form  submit={context.handleSignupSubmit} title="Signup">
-            <FormControl  isRequired>
-              <InputGroup bg="green">
-                <InputLeftAddon children={<Icon name="user" />} />
-                <Input
-                  placeholder="Name"
-                  name="name"
-                  type="text"
-                  value={context.state.formSignup.name}
-                  onChange={context.handleSignupInput}
-                />
-              </InputGroup>
-            </FormControl>
-            <FormControl isRequired>
-              <InputGroup>
-                <InputLeftAddon children={<Icon name="email" />} />
-                <Input
-                  onChange={context.handleSignupInput}
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  value={context.state.formSignup.email}
-                />
-              </InputGroup>
-            </FormControl>
-            <FormControl isRequired>
-              <InputGroup>
-                <InputLeftAddon children={<Icon name="lock" />} />
-                <Input
-                  onChange={context.handleSignupInput}
-                  placeholder="Password"
-                  name="password"
-                  type="password"
-                  value={context.state.formSignup.password}
-                />
-              </InputGroup>
-            </FormControl><br/>
-          </Form><br/>
-          <NavLink to="/create-property">Owner</NavLink><br/>
-          <NavLink to="/ten-profile">Tennant</NavLink><br/>
-          <NavLink to="/">Home</NavLink>
-        </Flex>
+        <div style={{ backgroundColor: "white", color: "green" }}>
+          <Flex
+            w="100vw"
+            h="100vh"
+            align="center"
+            justify="center"
+            direction="column"
+          >
+            <Form submit={context.handleSignupSubmit} title="Signup">
+              <FormControl isRequired>
+                <InputGroup>
+                  <Input
+                    placeholder="Name"
+                    name="name"
+                    type="text"
+                    value={context.state.formSignup.name}
+                    onChange={context.handleSignupInput}
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <InputGroup>
+                  <Input
+                    onChange={context.handleSignupInput}
+                    placeholder="Email"
+                    name="email"
+                    type="email"
+                    value={context.state.formSignup.email}
+                  />
+                </InputGroup>
+              </FormControl>
+              <FormControl isRequired>
+                <InputGroup>
+                  <Input
+                    onChange={context.handleSignupInput}
+                    placeholder="Password"
+                    name="password"
+                    type="password"
+                    value={context.state.formSignup.password}
+                  />
+                </InputGroup>
+              </FormControl>
+              <br />
+            </Form>
+            <br />
+
+            <NavLink to="/">Home</NavLink>
+          </Flex>
         </div>
       )}
     </MyContext.Consumer>
-  
-  )
+  );
 }
 
-export default Signup
+export default Signup;

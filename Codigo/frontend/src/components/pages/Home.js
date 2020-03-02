@@ -54,7 +54,7 @@ function Home() {
         </Button>
         or...
         <Button variantColor="green" marginLeft="5px">
-          <NavLink to="/signup">Signup</NavLink>
+          <NavLink to="/choose">Signup</NavLink>
         </Button>
       </Box>
         </div>

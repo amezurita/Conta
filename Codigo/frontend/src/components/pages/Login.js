@@ -16,11 +16,12 @@ export default function Login() {
   return (
     <MyContext.Consumer>
       {context => (
+        <div style={{backgroundColor:"white", color:"green"}}>
         <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
           <Form submit={context.handleLoginSubmit} title="Login">
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftAddon children={<Icon name="email" />} />
+              
                 <Input
                   onChange={context.handleLoginInput}
                   placeholder="Email"
@@ -32,7 +33,7 @@ export default function Login() {
             </FormControl>
             <FormControl isRequired>
               <InputGroup>
-                <InputLeftAddon children={<Icon name="lock" />} />
+                
                 <Input
                   onChange={context.handleLoginInput}
                   placeholder="Password"
@@ -43,11 +44,11 @@ export default function Login() {
               </InputGroup>
             </FormControl><br/>
           </Form>
-          <Box title="Or...">
-          </Box><br/><br/>
-          <NavLink to="/profile">Profile</NavLink><br/>
+          <NavLink to="/profile">Owner profile</NavLink><br/>
+          <NavLink to="/tennant"> Tennant profile</NavLink><br/>
           <NavLink to="/">Home</NavLink>
         </Flex>
+        </div>
       )}
     </MyContext.Consumer>
   );

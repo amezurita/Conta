@@ -41,6 +41,11 @@ router.get("/property", async (req, res, next) =>{
     res.json(prop)
 })
 
+router.post("/profile", async (req, res, next)=>{
+    const {data} = req.body
+    res.json(auth)
+})
+
 
 
 module.exports = router
