@@ -25,6 +25,8 @@ const propertySchema = new Schema({
       incomebal: Number,
       outcomebal: Number,
       owner: String,
+      tennants: {type:Schema.Types.ObjectId, ref:"tennants"},
+
         placeType: {
           type: String,
           enum: ["House", "Apartment", "Other"]

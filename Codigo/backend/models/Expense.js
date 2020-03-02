@@ -26,7 +26,7 @@ const expenseSchema = new Schema(
     ]
     },
     owner: String,
-    place: String,
+    property: String,
     description: String
   },
   {
