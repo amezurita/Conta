@@ -1,9 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Heading, Flex, Button, Box, Image } from "@chakra-ui/core";
-import Video from "../Video";
-import sample from "../../Assets/Landing.mp4";
-import { position } from "styled-system";
+
 import img from "../../Assets/Imgbgland.jpg"
 
 function Home() {
@@ -44,7 +42,7 @@ function Home() {
                 transform: "translate(-50%, -50%)"
               }}
             >
-              <Heading>Conta</Heading>
+              <Heading size="2xl">Renting</Heading>
             </div>
           {/* <Video /> */}
           

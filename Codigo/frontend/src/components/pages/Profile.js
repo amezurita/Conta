@@ -10,6 +10,8 @@ import {
   Text,
   Image
 } from "@chakra-ui/core";
+import lake from "../../Assets/lakehouse.jpg"
+import silver from "../../Assets/silverstapt.jpg"
 
 function Profile() {
   // function Feature({ title, desc, ...rest }) {
@@ -54,7 +56,7 @@ function Profile() {
         <div>
           <Stack spacing={8}>
             <Box p={5} shadow="md" borderWidth="1px">
-              <Image src="../../Assets/lakehouse.jpg" alt="property image"   />
+              <Image src={lake} w="30%" h="30%"alt="property image"   />
               <Heading fontSize="xl">Lake house</Heading>
               <Text color="orange"> Rent: $32,000</Text>
               <Text mt={4}>
@@ -69,7 +71,7 @@ function Profile() {
             </Box>
 
             <Box p={5} shadow="md" borderWidth="1px" >
-              <Image src="../../Assets/silverstapt.jpg" alt="property image"  />
+              <Image src={silver} w="30%" h="30%" alt="property image"  />
               <Heading fontSize="xl">Silver st apt</Heading>
               <Text color="orange">Rent: $15,000</Text>
               <Text mt={4}>Apartment by the coffee house. Water damage. </Text>

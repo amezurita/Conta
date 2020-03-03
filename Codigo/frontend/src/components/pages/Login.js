@@ -9,7 +9,6 @@ import {
   Icon
 } from "@chakra-ui/core";
 import Form from "../Styles/Form.js";
-import Box from "../Styles/Box.js"
 import { NavLink } from "react-router-dom";
 
 export default function Login() {
