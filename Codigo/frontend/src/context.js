@@ -43,9 +43,14 @@ class MyProvider extends Component {
 
   handleSignupSubmit = e => {
     e.preventDefault()
+
+    console.log(this.props)
+    console.log(this.context)
+
     const { name, email, password } = this.state.formSignup
     AUTH_SERVICE.signup({ name, email, password })
       .then(({ data }) => {
+        /*
         this.setState(prevState => ({
           ...prevState,
           formSignup: {
@@ -54,11 +59,14 @@ class MyProvider extends Component {
             password: ''
           }
         }))
-        alert(':)')
+
+         */
+
         this.props.history.push('/login')
+        // this.context.history.push('/login')
       })
-      .catch(() => {
-        alert('Algo salió mal 🥺😭')
+      .catch((e) => {
+        console.log(e)
       })
   }
 

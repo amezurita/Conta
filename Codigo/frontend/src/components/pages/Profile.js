@@ -10,8 +10,8 @@ import {
   Text,
   Image
 } from "@chakra-ui/core";
-import lake from "../../Assets/lakehouse.jpg"
-import silver from "../../Assets/silverstapt.jpg"
+import lake from "../../Assets/lakehouse.jpg";
+import silver from "../../Assets/silverstapt.jpg";
 
 function Profile() {
   // function Feature({ title, desc, ...rest }) {
@@ -32,59 +32,70 @@ function Profile() {
         textAlign: "justify"
       }}
     >
-      <Flex
-        w="100vw"
-        h="100vh"
-        align="center"
-        justify="center"
-        wrap="wrap"
-        direction="column"
-      >
-        <div>
-          <Heading>Welcome, María</Heading>
-        </div>
-        <br />
-        <br />
-        <Avatar></Avatar> <br />
-        <div>
-          <article>
-            Your monthly balance is: $21,896{" "}
-            <NavLink to="/balance">see more</NavLink>
-          </article>
-        </div>
-        <br />
+      <Stack>
+        <Flex direction={"column"} justify={"center"} align={"center"}>
+          <div>
+            <Heading style={{ display: 'flex', justifyContent: 'center' }}>Welcome, María</Heading>
+          </div>
+          <Avatar></Avatar>
+          <div>
+            <article>
+              Your monthly balance is: $21,896{" "}
+              <NavLink to="/balance">see more</NavLink>
+            </article>
+          </div>
+        </Flex>
+
         <div>
           <Stack spacing={8}>
-            <Box p={5} shadow="md" borderWidth="1px">
-              <Image src={lake} w="30%" h="30%"alt="property image"   />
-              <Heading fontSize="xl">Lake house</Heading>
-              <Text color="orange"> Rent: $32,000</Text>
-              <Text mt={4}>
-                House by the lake, fixed in sept of last year. Need to talk
-                with past tennants before renting again.
-              </Text>
-             
-              <Button>
-                <NavLink to="/property">see more</NavLink>
-              </Button>{" "}
-              <br />
-            </Box>
+            <Flex p={5} shadow="md" borderWidth="1px" m={5}>
+              <Image src={lake} w="30%" h="30%" alt="property image" />
+              <Flex px={5} direction={"column"} justify={"space-between"}>
+                <Heading fontSize="xl">Lake house</Heading>
+                <Text color="orange"> Rent: $32,000</Text>
+                <Text mt={4}>
+                  House by the lake, fixed in sept of last year. Need to talk
+                  with past tennants before renting again.
+                </Text>
+                <Button>
+                  <NavLink to="/property">see more</NavLink>
+                </Button>{" "}
+              </Flex>
+            </Flex>
 
-            <Box p={5} shadow="md" borderWidth="1px" >
-              <Image src={silver} w="30%" h="30%" alt="property image"  />
-              <Heading fontSize="xl">Silver st apt</Heading>
-              <Text color="orange">Rent: $15,000</Text>
-              <Text mt={4}>Apartment by the coffee house. Water damage. </Text>
-              
-              <Button>
-                <NavLink to="/property">see more</NavLink>
-              </Button>{" "}
-              <br />
-            </Box>
+            <Flex p={5} shadow="md" borderWidth="1px" m={5}>
+              <Image src={lake} w="30%" h="30%" alt="property image" />
+              <Flex px={5} direction={"column"} justify={"space-between"}>
+                <Heading fontSize="xl">Lake house</Heading>
+                <Text color="orange"> Rent: $32,000</Text>
+                <Text mt={4}>
+                  House by the lake, fixed in sept of last year. Need to talk
+                  with past tennants before renting again.
+                </Text>
+                <Button>
+                  <NavLink to="/property">see more</NavLink>
+                </Button>{" "}
+              </Flex>
+            </Flex>
+
+            <Flex p={5} shadow="md" borderWidth="1px" m={5}>
+              <Image src={lake} w="30%" h="30%" alt="property image" />
+              <Flex px={5} direction={"column"} justify={"space-between"}>
+                <Heading fontSize="xl">Lake house</Heading>
+                <Text color="orange"> Rent: $32,000</Text>
+                <Text mt={4}>
+                  House by the lake, fixed in sept of last year. Need to talk
+                  with past tennants before renting again.
+                </Text>
+                <Button>
+                  <NavLink to="/property">see more</NavLink>
+                </Button>{" "}
+              </Flex>
+            </Flex>
           </Stack>
         </div>
         <NavLink to="/">Home</NavLink>
-      </Flex>
+      </Stack>
     </div>
   );
 }
