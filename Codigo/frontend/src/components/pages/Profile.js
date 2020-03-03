@@ -78,7 +78,6 @@ function Profile() {
               </Flex>
             </Flex>
 
-<<<<<<< HEAD
             <Box p={5} shadow="md" borderWidth="1px" >
               <Image src={silver} w="30%" h="30%" alt="property image"  />
               <Heading fontSize="xl">Silver st apt</Heading>
@@ -93,22 +92,7 @@ function Profile() {
             <Button>
                 <NavLink to="/create-property">+</NavLink>
               </Button>
-=======
-            <Flex p={5} shadow="md" borderWidth="1px" m={5}>
-              <Image src={lake} w="30%" h="30%" alt="property image" />
-              <Flex px={5} direction={"column"} justify={"space-between"}>
-                <Heading fontSize="xl">Lake house</Heading>
-                <Text color="orange"> Rent: $32,000</Text>
-                <Text mt={4}>
-                  House by the lake, fixed in sept of last year. Need to talk
-                  with past tennants before renting again.
-                </Text>
-                <Button>
-                  <NavLink to="/property">see more</NavLink>
-                </Button>{" "}
-              </Flex>
-            </Flex>
->>>>>>> dev2
+
           </Stack>
         </div>
         <NavLink to="/">Home</NavLink>
