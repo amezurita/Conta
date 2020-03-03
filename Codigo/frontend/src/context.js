@@ -15,10 +15,23 @@ class MyProvider extends Component {
       email: '',
       password: ''
     },
+    property:{
+      name: "",
+      amount: "", 
+      description:""
+    },
     isLoggedIn: false,
     msg: 'Landing page'
   }
 
+
+  // handleInput = (e, obj) => {
+  //   const { name, value } = e.target
+  //   obj[name] = value
+  //   this.setState({ obj })
+  // onChange={ (e) => handleInput(e, 'formSignup')}
+
+  // }
   handleSignupInput = e => {
     const { name, value } = e.target
     this.setState(prevState => ({
@@ -95,6 +108,7 @@ class MyProvider extends Component {
         alert('Algo salió mal 🥺😭')
       })
   }
+
 
   render() {
     const {

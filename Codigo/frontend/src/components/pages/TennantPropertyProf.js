@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Heading, Flex, Button, Box, Image, Text, Avatar } from "@chakra-ui/core";
 
-function Balance() {
+function TennantPropertyProf() {
   return (
     <div
       style={{
@@ -34,4 +34,4 @@ function Balance() {
   );
 }
 
-export default Balance;
+export default TennantPropertyProf;

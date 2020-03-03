@@ -15,7 +15,7 @@ function Property() {
         
         <div>
           <Box p={5}  >
-              <Image src="../../Assets/lakehouse.jpg" alt="property image"  />
+              <Image src="/places/lakehouse.jpg" alt="property image"  />
               <Heading fontSize="xl">Lake House</Heading>
               <Text color="orange">Rent: $32,000</Text>
               <Text mt={4}> House by the lake, fixed in sept of last year. Need to talk

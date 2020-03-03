@@ -14,6 +14,8 @@ import Balance from "./components/pages/Balance.js";
 import TennantProfile from "./components/pages/TennantProf.js";
 import TennantPropertyProf from "./components/pages/TennantPropertyProf";
 
+console.log(CreateProperty)
+
 const Router = () => (
   <BrowserRouter>
     <Switch>

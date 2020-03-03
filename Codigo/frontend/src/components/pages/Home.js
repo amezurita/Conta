@@ -16,7 +16,7 @@ function Home() {
       }}
     >
       <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
-        <div>
+        <div  >
         
             {/* <video
               className="videoTag"
@@ -33,7 +33,7 @@ function Home() {
               <source src={sample} type="video/mp4" />
             </video> */}
 
-            <Image src={img} alt="landing bg"  size="100%" objectFit="cover"></Image>
+            <Image src={img} alt="landing bg"  size="100%" objectFit="cover"/>
             <div
               style={{
                 position: "absolute",

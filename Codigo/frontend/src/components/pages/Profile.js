@@ -48,7 +48,7 @@ function Profile() {
         <Avatar></Avatar> <br />
         <div>
           <article>
-            Your monthly balance is: $21,896{" "}
+            Your monthly balance is: $47,000{" "}
             <NavLink to="/balance">see more</NavLink>
           </article>
         </div>
@@ -81,6 +81,9 @@ function Profile() {
               </Button>{" "}
               <br />
             </Box>
+            <Button>
+                <NavLink to="/create-property">+</NavLink>
+              </Button>
           </Stack>
         </div>
         <NavLink to="/">Home</NavLink>
