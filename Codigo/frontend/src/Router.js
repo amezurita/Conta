@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {BrowserRouter, Switch, Route, withRouter} from "react-router-dom";
 import Home from "./components/pages/Home.js";
 import NotFound from "./components/404/NotFound.js";
 import Choose from "./components/pages/Choose"
@@ -17,12 +17,10 @@ import TennantPropertyProf from "./components/pages/TennantPropertyProf";
 console.log(CreateProperty)
 
 const Router = () => (
-  <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Home} />
       <Route exact path="/choose" component={Choose} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/login" component={(Login)} />
+      <Route exact path="/signup" component={(Signup)} />
       <Route exact path ="/ten-signup"  component ={TenReg}/>
       <Route exact path="/profile" component={Profile} />
       <Route exact path="/edit-profile" component={EditProfile} />
@@ -31,9 +29,9 @@ const Router = () => (
       <Route exact path="/property" component={Property} />
       <Route exact path="/tennant" component={TennantProfile} />
       <Route exact path="/ten-property" component={TennantPropertyProf} />
+      <Route exact path="/" component={Home} />
       <Route component={NotFound} />
     </Switch>
-  </BrowserRouter>
 );
 
 export default Router;

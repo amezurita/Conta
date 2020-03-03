@@ -2,62 +2,53 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Heading, Flex, Button, Box, Image } from "@chakra-ui/core";
 
-import img from "../../Assets/Imgbgland.jpg"
+import img from "../../Assets/Imgbgland.jpg";
 
-function Home() {
+function Home(props) {
   return (
     <div
       style={{
         backgroundColor: "#121212",
         color: "white",
         textAlign: "center",
-        position: "relative",
-        textAlign: "center"
+        position: "relative"
       }}
     >
-      <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
-        <div  >
-        
-            {/* <video
-              className="videoTag"
-              autoPlay
-              loop
-              muted
-              style={{
-                // width: "100%",
-                // height: "100%",
-                objectFit: "fill",
-                zIndex: 0
-              }}
-            >
-              <source src={sample} type="video/mp4" />
-            </video> */}
-
-            <Image src={img} alt="landing bg"  size="100%" objectFit="cover"/>
-            <div
-              style={{
-                position: "absolute",
-                top: "46vh",
-                left: "50vw",
-                transform: "translate(-50%, -50%)"
-              }}
-            >
+      <Flex
+        w="100vw"
+        h="100vh"
+        align="center"
+        justify="center"
+        wrap="wrap"
+        direction="column"
+      >
+        <div
+          style={{
+            background: `url(${img})`,
+            width: 500,
+            height: 800,
+            display: 'flex',
+            justifyContent: 'Center',
+            alignItems: 'Center'
+          }}
+        >
+          <div>
+            <div>
               <Heading size="2xl">Renting</Heading>
             </div>
-          {/* <Video /> */}
-          
-          <Box>
-        <Button variantColor="green" variant="outline" marginRight="5px" >
-          <NavLink to="/login">Login</NavLink>{" "}
-        </Button>
-        or...
-        <Button variantColor="green" marginLeft="5px">
-          <NavLink to="/choose">Signup</NavLink>
-        </Button>
-      </Box>
+            <br/><br/>
+            <Box>
+              <Button variantColor="green" variant="outline" marginRight="5px">
+                <NavLink to="/login">Login</NavLink>
+              </Button>
+              or...
+              <Button variantColor="green" marginLeft="5px">
+                <NavLink to="/choose">Signup</NavLink>
+              </Button>
+            </Box>
+          </div>
         </div>
       </Flex>
-    
     </div>
   );
 }
