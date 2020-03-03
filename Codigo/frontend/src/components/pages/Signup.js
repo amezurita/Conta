@@ -1,13 +1,15 @@
 import React from "react";
-import { MyContext } from "../../context";
+
 import {
   Flex,
   FormControl,
   InputGroup,
   Input,
 } from "@chakra-ui/core";
+
 import Form from "../Styles/Form";
 import { NavLink } from "react-router-dom";
+import { MyContext } from "../../context";
 
 function Signup() {
   return (
@@ -55,9 +57,27 @@ function Signup() {
                   />
                 </InputGroup>
               </FormControl>
+
+              {
+                context.state.formSignup.role === 'tennant'
+                  ? (
+                    <FormControl isRequired>
+                      <InputGroup>
+                        <Input
+                          onChange={context.handleSignupInput}
+                          placeholder="property id"
+                          name="property_id"
+                          type="text"
+                          value={context.state.formSignup.password}
+                        />
+                      </InputGroup>
+                    </FormControl>
+                  )
+                  : null
+              }
+
               <br />
             </Form>
-            <br />
 
             <NavLink to="/">Home</NavLink>
           </Flex>

@@ -11,7 +11,9 @@ class MyProvider extends Component {
     formSignup: {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      role: '',
+      property_id: ''
     },
     formLogin: {
       email: '',
@@ -63,6 +65,20 @@ class MyProvider extends Component {
       .catch((e) => {
         console.log(e)
       })
+  } 
+
+  handleSelectRole = (e, role) => {
+    e.preventDefault()
+
+    this.setState(prevState => ({
+      ...prevState,
+      formSignup: {
+        ...prevState.formSignup,
+        role
+      }
+    }))
+
+    this.props.history.push('/signup')
   }
 
   handleSignupInput = e => {
@@ -76,7 +92,7 @@ class MyProvider extends Component {
     }))
   }
 
-  handleLoginInput = e => {
+  handleLoginInput =e => {
     const { name, value } = e.target
     this.setState(prevState => ({
       ...prevState,
@@ -89,10 +105,17 @@ class MyProvider extends Component {
 
   handleSignupSubmit = e => {
     e.preventDefault()
-
     const { name, email, password } = this.state.formSignup
     AUTH_SERVICE.signup({ name, email, password })
       .then(({ data }) => {
+        this.setState(prevState => ({
+          ...prevState,
+          formSignup: {
+            name: '',
+            email: '',
+            password: ''
+          }
+        }))
 
         this.props.history.push('/login')
       })
@@ -145,12 +168,14 @@ class MyProvider extends Component {
       handleLoginSubmit,
       handleFile,
       handleInput, 
-      handleSubmit
+      handleSubmit,
+      handleSelectRole
     } = this
     return (
       <MyContext.Provider
         value={{
           state,
+          handleSelectRole,
           handleSignupInput,
           handleSignupSubmit,
           handleLoginInput,
