@@ -22,15 +22,11 @@ function CreateProperty() {
         <div
           style={{
             backgroundColor: "black",
-            color: "white",
+            color: "green",
             textAlign: "center"
           }}
         >
-          <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap">
-            <div>
-              <Heading>Create Property</Heading>
-            </div>
-            <br />
+          <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
             <div>
               <FormControl>
                 <Form submit={context.handleSubmit} title="Create Property">
@@ -42,6 +38,7 @@ function CreateProperty() {
                         type="text"
                         placeholder="Property name"
                         value={context.state.property.name}
+
                       />
                     </InputGroup>
                   </FormControl>
@@ -50,7 +47,7 @@ function CreateProperty() {
                       <Input
                         onChange={context.handleInput}
                         type="number" name="rent" placeholder="Rent amount"
-                        value={context.state.property.amount}
+                        value={context.state.property.rent}
                       />
                     </InputGroup>
                   </FormControl>
@@ -59,7 +56,8 @@ function CreateProperty() {
                       <Input
                         onChange={context.handleInput}
                         type="text" name="description" placeholder="Description"
-                        value={context.state.property.descriptions}
+                        value={context.state.property.description}
+
                       />
                     </InputGroup>
                   </FormControl>

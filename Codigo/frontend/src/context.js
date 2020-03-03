@@ -1,6 +1,8 @@
 import React, { Component, createContext } from 'react'
 import { withRouter } from 'react-router-dom'
 import AUTH_SERVICE from './services/auth'
+import Property from './components/pages/Property'
+import PROP from "./services/property"
 
 export const MyContext = createContext()
 
@@ -17,7 +19,7 @@ class MyProvider extends Component {
     },
     property:{
       name: "",
-      amount: "", 
+      rent: 0, 
       description:""
     },
     isLoggedIn: false,
@@ -32,6 +34,37 @@ class MyProvider extends Component {
   // onChange={ (e) => handleInput(e, 'formSignup')}
 
   // }
+
+  handleInput = e => {
+    console.log(e)
+    const { name, value } = e.target
+
+    console.log(name, value)
+
+    this.setState(prevState => ({
+      ...prevState,
+      property: {
+        ...prevState.property,
+        [name]: value
+      }
+    }))
+
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+
+    const { name, rent, description } = this.state.property
+    PROP.create({ name, rent, description })
+      .then(({ data }) => {
+
+        this.props.history.push('/profile')
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }
+
   handleSignupInput = e => {
     const { name, value } = e.target
     this.setState(prevState => ({
@@ -57,26 +90,11 @@ class MyProvider extends Component {
   handleSignupSubmit = e => {
     e.preventDefault()
 
-    console.log(this.props)
-    console.log(this.context)
-
     const { name, email, password } = this.state.formSignup
     AUTH_SERVICE.signup({ name, email, password })
       .then(({ data }) => {
-        /*
-        this.setState(prevState => ({
-          ...prevState,
-          formSignup: {
-            name: '',
-            email: '',
-            password: ''
-          }
-        }))
-
-         */
 
         this.props.history.push('/login')
-        // this.context.history.push('/login')
       })
       .catch((e) => {
         console.log(e)
@@ -125,7 +143,9 @@ class MyProvider extends Component {
       handleSignupSubmit,
       handleLoginInput,
       handleLoginSubmit,
-      handleFile
+      handleFile,
+      handleInput, 
+      handleSubmit
     } = this
     return (
       <MyContext.Provider
@@ -135,7 +155,9 @@ class MyProvider extends Component {
           handleSignupSubmit,
           handleLoginInput,
           handleLoginSubmit,
-          handleFile
+          handleFile,
+          handleInput, 
+          handleSubmit
         }}
       >
         {this.props.children}
