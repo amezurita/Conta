@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1073208aa55d7996cc1afa6e1d37257c",
+    "revision": "c7aaa0bae14ec31ac0d80eaca68a26e0",
     "url": "/index.html"
   },
   {
-    "revision": "80a9dd4c48cb0d3a327d",
-    "url": "/static/js/2.513bbb87.chunk.js"
+    "revision": "9ae6d989ec4d41f69c38",
+    "url": "/static/js/2.288553eb.chunk.js"
   },
   {
     "revision": "928d7b5eb39d16fe9a880722c974b51e",
-    "url": "/static/js/2.513bbb87.chunk.js.LICENSE.txt"
+    "url": "/static/js/2.288553eb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "f60887f636a9a70ddd6a",
-    "url": "/static/js/main.4668f74e.chunk.js"
+    "revision": "1dc697a6a9153fb5bd2b",
+    "url": "/static/js/main.43845c42.chunk.js"
   },
   {
     "revision": "ccf1d8c0179706a077aa",
@@ -26,9 +26,5 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "454998099b847e5e1d89ffedf7c6843e",
     "url": "/static/media/lakehouse.45499809.jpg"
-  },
-  {
-    "revision": "ff1c13a1306d044292fb8edb2ffabf1f",
-    "url": "/static/media/silverstapt.ff1c13a1.jpg"
   }
 ]);

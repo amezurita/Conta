@@ -6,7 +6,7 @@ process.env.NODE_ENV === 'production'
   ? (baseURL = 'here should be your production endpoint')
   : ();
 */
-  baseURL = 'http://localhost:8080'
+  baseURL = 'https://backendrent.herokuapp.com'
 
 const service = axios.create({ withCredentials: true, baseURL });
 

@@ -43,8 +43,6 @@ export default function Login() {
               </InputGroup>
             </FormControl><br/>
           </Form>
-          <NavLink to="/profile">Owner profile</NavLink><br/>
-          <NavLink to="/tennant"> Tennant profile</NavLink><br/>
           <NavLink to="/">Home</NavLink>
         </Flex>
         </div>

@@ -32,7 +32,7 @@ function Profile(props) {
       style={{
         backgroundColor: "white",
         color: "green",
-        textAlign: "left"
+        textAlign: "center"
       }}
     >
       <Box
@@ -61,7 +61,7 @@ function Profile(props) {
           <Stack spacing={8}>
             <Box p={5} shadow="md" borderWidth="1px">
               <Image src="/places/lakehouse.jpg" alt="property image"   />
-              <Heading fontSize="xl">${props.user.property.name}</Heading>
+              <Heading fontSize="xl">{props.user.property.name}</Heading>
               <Text color="orange"> Rent: ${props.user.property.rent}</Text>
             </Box>
 

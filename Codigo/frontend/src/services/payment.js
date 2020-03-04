@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const baseURL =
-  process.env.NODE_ENV === "production" ? "prod_url" : "http://localhost:8080";
+const baseURL = "https://backendrent.herokuapp.com"
 
 const service = axios.create({ withCredentials: true, baseURL });
 
