@@ -64,6 +64,7 @@ function Signup() {
                     <FormControl isRequired>
                       <InputGroup>
                         <Input
+                          required={true}
                           onChange={context.handleSignupInput}
                           placeholder="reference code"
                           name="property_id"

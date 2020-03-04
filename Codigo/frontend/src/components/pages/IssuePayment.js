@@ -41,37 +41,36 @@ function IssuePayment() {
           >
             <div>
               <FormControl>
-                <Form submit={context.handleSubmit} title="Issue Payment">
+                <Form submit={context.handleSubmitPayment} title="Issue Payment">
                   <FormControl isRequired>
                     <InputGroup>
                       <Input
-                        onChange={context.handleInput}
+                        onChange={context.handlePaymentInput}
                         name="name"
                         type="text"
-                        placeholder="Payment Subject"
-                        value="miau"
+                        placeholder="Payment name"
+                        value={context.state.formPayment.name}
                       />
                     </InputGroup>
                   </FormControl>
                   <FormControl isRequired>
                     <InputGroup>
                       <Input
-                        onChange={context.handleInput}
-                        type="number"
-                        name="amount"
-                        placeholder="Payment amount"
-                        value="miau"
+                        onChange={context.handlePaymentInput}
+                        name={'amount'}
+                        type="number" name="amount" placeholder="Payment amount"
+                        value={context.state.formPayment.amount}
                       />
                     </InputGroup>
                   </FormControl>
                   <FormControl isRequired>
                     <InputGroup>
                       <Input
-                        onChange={context.handleInput}
+                        onChange={context.handlePaymentInput}
                         type="text"
-                        name="description"
-                        placeholder="Tell the tenant a little more about the payment"
-                        value="miau"
+                        name="description" placeholder="Description"
+                        value={context.state.formPayment.description}
+
                       />
                     </InputGroup>
                   </FormControl>

@@ -1,18 +1,38 @@
 const express = require('express');
 const router = express.Router();
+
 const User = require('../models/User');
+const Property = require("../models/Property")
+const Payments = require("../models/Payment")
+
 const passport = require('../config/passport');
 const { sendMail } = require("../config/nodemailer")
 
 router.post('/signup', (req, res, next) => {
   User.register(req.body, req.body.password)
-    .then((user) => res.status(201).json({ user }))
+    .then((user) => res.status(201).json({
+      id: user._id
+    }))
     .catch((err) => res.status(500).json({ err }));
 });
 
-router.post('/login', passport.authenticate('local'), (req, res, next) => {
+router.post('/login', passport.authenticate('local'), async (req, res, next) => {
   const { user } = req;
-  res.status(200).json({ user });
+
+  const response = {
+    id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
+
+  if(response.role === 'tennant') {
+    response.property_id = user.tenpropId || 1;
+    response.property = await Property.findById(response.property_id)
+    response.payments = await Payments.find({ property: response.property_id })
+  }
+
+  res.status(200).json({ response });
 });
 
 router.get('/logout', (req, res, next) => {

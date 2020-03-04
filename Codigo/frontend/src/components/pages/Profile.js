@@ -13,106 +13,92 @@ import lake from "../../Assets/lakehouse.jpg";
 import context from "../../context"
 import ChatIcon from "../ChatIcon"
 
+import { MyContext } from "../../context";
 
-function Profile() {
-  // function Feature({ title, desc, ...rest }) {
-  //   return (
-  //     <Box p={5} shadow="md" borderWidth="1px" {...rest}>
-  //       <Image src="../../Assets/lakehouse.jpg" alt="property image"/>
-  //       <Heading fontSize="xl">{title}</Heading>
-  //       <Text mt={4}>{desc}</Text>
-  //       <Button><NavLink to="/property">see more</NavLink></Button> <br />
-  //     </Box>
-  //   );
-  // }
+class ProfileConsumer extends React.Component {
+  render() {
+    return (
+      <MyContext.Consumer>{ctx => <Profile ctx={ctx} />}</MyContext.Consumer>
+    );
+  }
+}
+
+class Profile extends React.Component {
+  componentDidMount() {
+    console.log(this.props.ctx);
+    this.props.ctx.loadOwnerProperties();
+  }
+
+  render() {
+    const state = this.props.ctx.state || {
+      user: {}
+    }
+
+    const balance = (state.ownerProperties || []).reduce((sum, property) => {
+      return sum + (property.rent || 0)
+    }, 0)
+
+    return (
+      <div
+        style={{
+          backgroundColor: "white",
+          color: "green",
+          textAlign: "justify"
+        }}
+      >
+        <Stack>
+          <Flex direction={"column"} justify={"center"} align={"center"}>
+            <div>
+              <Heading style={{ display: "flex", justifyContent: "center" }}>
+                Welcome, {state.user.name}
+              </Heading>
+            </div>
+            <Avatar></Avatar>
+
+            <div>
+              <article>Your estimated monthly balance is: ${balance}</article>
+            </div>
+          </Flex>
+
+          <div>
+            <Stack spacing={8}>
+              {(state.ownerProperties || []).map(p => {
+                return <PropertyCard key={p._id} props={{
+                  property: p,
+                  selectProperty: () => this.props.ctx.handleSelectPropertyDetail(p)
+                }} />;
+              })}
+
+              <Button>
+                <NavLink to="/create-property">Add property</NavLink>
+              </Button>
+            </Stack>
+          </div>
+          <NavLink to="/">Home</NavLink>
+        </Stack>
+      </div>
+    );
+  }
+}
+
+function PropertyCard({ props }) {
   return (
-    <div
-      style={{
-        backgroundColor: "white",
-        color: "green",
-        textAlign: "justify"
-      }}
-    >
-      <Stack>
-        <Flex direction={"column"} justify={"center"} align={"center"}>
-          <div>
-            <Heading style={{ display: 'flex', justifyContent: 'center' }}>Welcome, María</Heading>
-          </div>
-          <Avatar></Avatar>
-          <div>
-            <article>
-              Your monthly balance is: $21,896{" "}
-              <NavLink to="/balance">see more</NavLink>
-            </article>
-          </div>
-        </Flex>
-
-        <div>
-          <Stack spacing={8}>
-            <Flex p={5} shadow="md" borderWidth="1px" m={5}>
-              <Image src={lake} w="30%" h="30%" alt="property image" />
-              <Flex px={5} direction={"column"} justify={"space-between"}>
-                <Heading fontSize="xl">Lake house</Heading>
-                <Text color="orange"> Rent: $32,000</Text>
-                <Text mt={4}>
-                  House by the lake, fixed in sept of last year. Need to talk
-                  with past tennants before renting again.
-                </Text>
-                <Button>
-                  <NavLink to="/property">see more</NavLink>
-                </Button>{" "}
-              </Flex>
-            </Flex>
-
-            <Flex p={5} shadow="md" borderWidth="1px" m={5}>
-              <Image src={lake} w="30%" h="30%" alt="property image" />
-              <Flex px={5} direction={"column"} justify={"space-between"}>
-                <Heading fontSize="xl">Lake house</Heading>
-                <Text color="orange"> Rent: $32,000</Text>
-                <Text mt={4}>
-                  House by the lake, fixed in sept of last year. Need to talk
-                  with past tennants before renting again.
-                </Text>
-                <Button>
-                  <NavLink to="/property">see more</NavLink>
-                </Button>{" "}
-              </Flex>
-            </Flex>
-
-            <Flex p={5} shadow="md" borderWidth="1px" m={5}>
-              <Image src={lake} w="30%" h="30%" alt="property image" />
-              <Flex px={5} direction={"column"} justify={"space-between"}>
-                <Heading fontSize="xl">Lake house</Heading>
-                <Text color="orange"> Rent: $32,000</Text>
-                <Text mt={4}>
-                  House by the lake, fixed in sept of last year. Need to talk
-                  with past tennants before renting again.
-                </Text>
-                <Button>
-                  <NavLink to="/property">see more</NavLink>
-                </Button>{" "}
-              
-              </Flex>
-              
-            </Flex>
-            <Button>
-                  <NavLink to="/create-property">Add property</NavLink>
-                </Button>
-          </Stack>
-        </div>
-        <NavLink to="/chat"><ChatIcon /></NavLink>
-        <NavLink to="/">Home</NavLink>
-      </Stack>
-    </div>
+    <Flex p={5} shadow="md" borderWidth="1px" m={5}>
+      <Image src={lake} w="30%" h="30%" alt="property image" />
+      <Flex px={5} direction={"column"} justify={"space-between"}>
+        <Heading fontSize="xl">{props.property.name}</Heading>
+        <Text color="orange">Rent: ${props.property.rent}</Text>
+        <Text mt={4}>{props.property.description}</Text>
+        <Text my={4}>
+          { props.property.tennant ? ('Tenant: ' + props.property.tennant.name) : props.property._id }
+        </Text>
+        <Button onClick={props.selectProperty}>See more</Button>
+      </Flex>
+    </Flex>
   );
 }
 
-export default Profile;
-
-
-
-
-
+export default ProfileConsumer;
 
 // return (
 //   <div

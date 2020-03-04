@@ -1,8 +1,11 @@
 import React, { Component, createContext } from "react";
 import { withRouter } from "react-router-dom";
-import AUTH_SERVICE from "./services/auth";
+
 import Property from "./components/pages/Property";
+
+import AUTH_SERVICE from "./services/auth";
 import PROP from "./services/property";
+import PAYMENT from "./services/payment";
 
 export const MyContext = createContext();
 
@@ -19,24 +22,30 @@ class MyProvider extends Component {
       email: "",
       password: ""
     },
+
+    formPayment: {
+      name: "",
+      amount: 0,
+      description: "",
+    },
+
     user: {
+      id: "",
       name: "",
       email: "",
-      password: "",
       role: "",
-      property_id: ""
+      property_id: "",
+      property: {},
+      payments: []
     },
+
+
     property: [{
       name: "",
       rent: "",
       desc: "", 
-      tenant:"",
-      payments: [{
-        name: "", 
-        amount:"", 
-        description:""
-      }], 
-      
+
+      tenant:""
     }],
     tenantProperty: {
       name: "",
@@ -45,6 +54,25 @@ class MyProvider extends Component {
       payments: "", 
       owner:""
     },
+
+    ownerProperties: [{
+      name: "",
+      rent: "",
+      desc: "",
+
+      tenant:"",
+
+      payments: [{
+        name: "",
+        amount:"",
+        description:""
+      }],
+    }],
+
+    selectedProperty: {
+      payments: []
+    },
+
     isLoggedIn: false,
     msg: "Landing page"
   };
@@ -56,15 +84,21 @@ class MyProvider extends Component {
   // onChange={ (e) => handleInput(e, 'formSignup')}
 
   // }
-  async componentDidMount(){
 
+  handlePaymentInput = e => {
+    const { name, value } = e.target;
+
+    this.setState(prevState => ({
+      ...prevState,
+      formPayment: {
+        ...prevState.formPayment,
+        [name]: value
+      }
+    }));
   }
 
   handleInput = e => {
-    console.log(e);
     const { name, value } = e.target;
-
-    console.log(name, value);
 
     this.setState(prevState => ({
       ...prevState,
@@ -79,7 +113,10 @@ class MyProvider extends Component {
     e.preventDefault();
 
     const { name, rent, description } = this.state.property;
-    PROP.create({ name, rent, description })
+    PROP.create(
+      { name, rent, description },
+      this.state.user
+    )
       .then(({ data }) => {
         this.props.history.push("/profile");
       })
@@ -87,6 +124,31 @@ class MyProvider extends Component {
         console.log(e);
       });
   };
+
+  handleSubmitPayment = e => {
+    e.preventDefault();
+    let payment = this.state.formPayment;
+
+    payment.owner = this.state.user.id
+    payment.property = this.state.selectedProperty._id
+
+    PAYMENT.create(payment, this.state.user)
+      .then(({ data }) => {
+
+        this.setState(prevState => ({
+          ...prevState,
+          selectedProperty: {
+            ...prevState.selectedProperty,
+            payments: [...prevState.selectedProperty.payments, data]
+          }
+        }));
+
+        this.props.history.push("/property");
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
 
   handleSelectRole = (e, role) => {
     e.preventDefault();
@@ -127,7 +189,8 @@ class MyProvider extends Component {
   handleSignupSubmit = e => {
     e.preventDefault();
     const { name, email, password, role, property_id } = this.state.formSignup;
-    AUTH_SERVICE.signup({ name, email, password, role, property_id })
+
+    AUTH_SERVICE.signup({ name, email, password, role, tenpropId: property_id })
       .then(({ data }) => {
         this.setState(prevState => ({
           ...prevState,
@@ -170,17 +233,67 @@ class MyProvider extends Component {
             email: "",
             password: ""
           },
-          loggedUser: data.user,
-          isLoggedIn: true
+
+          user: {
+            ...data.response,
+          }
         }));
-        if(this.state.user.role === "owner"){this.props.history.push("/profile")} 
-        else{this.props.history.push("/tennant")}
+
+        if(this.state.user.role === "owner"){
+          this.props.history.push("/profile")
+        } else{
+          this.props.history.push("/tennant")
+        }
       })
       .catch(err => {
         console.log(err);
         alert("Algo salió mal 🥺😭");
       });
   };
+
+  loadOwnerProperties = () => {
+    PROP.getOwnerProperties(this.state.user)
+      .then(({ data }) => {
+        console.log(data)
+
+        this.setState(prevState => ({
+          ...prevState,
+          ownerProperties: data
+        }));
+      })
+  }
+
+  handleSelectPropertyDetail = (property) => {
+    this.setState(prev => ({
+      ...prev,
+      selectedProperty: property
+    }))
+
+    this.props.history.push("/property")
+  }
+
+  handleMarkPaymentDone = (payment) => {
+    PAYMENT.done(payment, this.state.user)
+      .then(({ data }) => {
+        const index = this.state.user.payments.findIndex(x => x._id === payment._id);
+
+        this.setState(prevState => ({
+          ...prevState,
+        user: {
+          ...prevState.user,
+          payments: [
+            ...prevState.user.payments.slice(0, index),
+            {...payment, isPaid: true},
+            ...prevState.user.payments.slice(index + 1),
+          ]
+        }
+        }));
+
+      })
+      .catch(e => {
+        console.log(e);
+      });
+  }
 
   render() {
     const {
@@ -192,7 +305,12 @@ class MyProvider extends Component {
       handleFile,
       handleInput,
       handleSubmit,
-      handleSelectRole
+      handleSelectRole,
+      loadOwnerProperties,
+      handleSelectPropertyDetail,
+      handlePaymentInput,
+      handleSubmitPayment,
+      handleMarkPaymentDone
     } = this;
     return (
       <MyContext.Provider
@@ -205,7 +323,12 @@ class MyProvider extends Component {
           handleLoginSubmit,
           handleFile,
           handleInput,
-          handleSubmit
+          handleSubmit,
+          loadOwnerProperties,
+          handleSelectPropertyDetail,
+          handlePaymentInput,
+          handleSubmitPayment,
+          handleMarkPaymentDone
         }}
       >
         {this.props.children}
