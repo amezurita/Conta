@@ -8,12 +8,12 @@ function Choose() {
     <MyContext.Consumer>
       {context => (
         <Flex w="100vw" h="100vh" align="center" justify="center" direction="column">
-          <article> What is your role? </article>
+          <article> Are you an... </article>
           <Box>
             <Button variantColor="green" variant="outline" marginRight="5px" onClick={(e) => context.handleSelectRole(e, 'owner')}>
               Owner
             </Button>
-            or...
+            or a...
             <Button variantColor="green" marginLeft="5px" onClick={(e) => context.handleSelectRole(e, 'tennant')}>
               Tenant
             </Button>

@@ -16,6 +16,7 @@ const MY_SERVICE = {
   },
   signup: async (user) => {
     return await service.post('/signup', user);
+    
   },
   login: async (user) => {
     return await service.post('/login', user);
@@ -23,6 +24,7 @@ const MY_SERVICE = {
   logOut: async () => {
     return await service.get('/logout');
   }
+
 };
 
 export default MY_SERVICE;

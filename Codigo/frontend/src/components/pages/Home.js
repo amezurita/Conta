@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { Heading, Flex, Button, Box, Image } from "@chakra-ui/core";
+import ChatIcon from "../ChatIcon.js"
 
 import img from "../../Assets/Imgbgland.jpg";
 
@@ -25,8 +26,8 @@ function Home(props) {
         <div
           style={{
             background: `url(${img})`,
-            width: 500,
-            height: 800,
+            width: 414,
+            height: 716,
             display: 'flex',
             justifyContent: 'Center',
             alignItems: 'Center'
@@ -46,6 +47,7 @@ function Home(props) {
                 <NavLink to="/choose">Signup</NavLink>
               </Button>
             </Box>
+            <ChatIcon/>
           </div>
         </div>
       </Flex>

@@ -65,10 +65,10 @@ function Signup() {
                       <InputGroup>
                         <Input
                           onChange={context.handleSignupInput}
-                          placeholder="property id"
+                          placeholder="reference code"
                           name="property_id"
                           type="text"
-                          value={context.state.formSignup.password}
+                          value={context.state.formSignup.property_id}
                         />
                       </InputGroup>
                     </FormControl>

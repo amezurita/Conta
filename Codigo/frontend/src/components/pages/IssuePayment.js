@@ -15,7 +15,7 @@ import {
 import {MyContext} from "../../context";
 import Form from "../Styles/Form";
 
-function CreateProperty() {
+function IssuePayment() {
   return (
     <MyContext.Consumer>
       {context => (
@@ -29,7 +29,7 @@ function CreateProperty() {
           <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
             <div>
               <FormControl>
-                <Form submit={context.handleSubmit} title="Create Property">
+                <Form submit={context.handleSubmit} title="Issue Payment">
                   <FormControl isRequired>
                     <InputGroup>
                       <Input
@@ -37,7 +37,7 @@ function CreateProperty() {
                         name="name"
                         type="text"
                         placeholder="Property name"
-                        value={context.state.property.name}
+                        value={context.state.property.payment.name}
 
                       />
                     </InputGroup>
@@ -46,8 +46,8 @@ function CreateProperty() {
                     <InputGroup>
                       <Input
                         onChange={context.handleInput}
-                        type="number" name="rent" placeholder="Rent amount"
-                        value={context.state.property.rent}
+                        type="number" name="amount" placeholder="Payment amount"
+                        value={context.state.property.payment.amount}
                       />
                     </InputGroup>
                   </FormControl>
@@ -56,7 +56,7 @@ function CreateProperty() {
                       <Input
                         onChange={context.handleInput}
                         type="text" name="description" placeholder="Description"
-                        value={context.state.property.description}
+                        value={context.state.property.payment.description}
 
                       />
                     </InputGroup>
@@ -64,7 +64,7 @@ function CreateProperty() {
                 </Form>
               </FormControl>
             </div>
-            <NavLink to="/profile">Profile</NavLink>
+            <NavLink to="/property">Property</NavLink>
             <br />
             <NavLink to="/">Home</NavLink>
           </Flex>
@@ -74,4 +74,4 @@ function CreateProperty() {
   );
 }
 
-export default CreateProperty;
+export default IssuePayment;

@@ -1,33 +1,52 @@
-import React, { Component, createContext } from 'react'
-import { withRouter } from 'react-router-dom'
-import AUTH_SERVICE from './services/auth'
-import Property from './components/pages/Property'
-import PROP from "./services/property"
+import React, { Component, createContext } from "react";
+import { withRouter } from "react-router-dom";
+import AUTH_SERVICE from "./services/auth";
+import Property from "./components/pages/Property";
+import PROP from "./services/property";
 
-export const MyContext = createContext()
+export const MyContext = createContext();
 
 class MyProvider extends Component {
   state = {
     formSignup: {
-      name: '',
-      email: '',
-      password: '',
-      role: '',
-      property_id: ''
+      name: "",
+      email: "",
+      password: "",
+      role: "",
+      property_id: ""
     },
     formLogin: {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     },
-    property:{
+    user: {
       name: "",
-      rent: 0, 
-      description:""
+      email: "",
+      password: "",
+      role: "",
+      property_id: ""
+    },
+    property: [{
+      name: "",
+      rent: "",
+      desc: "", 
+      payments: [{
+        name: "", 
+        amount:"", 
+        description:""
+      }], 
+      tenant:""
+    }],
+    tenantProperty: {
+      name: "",
+      rent: "",
+      desc: "",
+      payments: "", 
+      owner:""
     },
     isLoggedIn: false,
-    msg: 'Landing page'
-  }
-
+    msg: "Landing page"
+  };
 
   // handleInput = (e, obj) => {
   //   const { name, value } = e.target
@@ -36,12 +55,15 @@ class MyProvider extends Component {
   // onChange={ (e) => handleInput(e, 'formSignup')}
 
   // }
+  async componentDidMount(){
+
+  }
 
   handleInput = e => {
-    console.log(e)
-    const { name, value } = e.target
+    console.log(e);
+    const { name, value } = e.target;
 
-    console.log(name, value)
+    console.log(name, value);
 
     this.setState(prevState => ({
       ...prevState,
@@ -49,26 +71,24 @@ class MyProvider extends Component {
         ...prevState.property,
         [name]: value
       }
-    }))
-
-  }
+    }));
+  };
 
   handleSubmit = e => {
-    e.preventDefault()
+    e.preventDefault();
 
-    const { name, rent, description } = this.state.property
+    const { name, rent, description } = this.state.property;
     PROP.create({ name, rent, description })
       .then(({ data }) => {
-
-        this.props.history.push('/profile')
+        this.props.history.push("/profile");
       })
-      .catch((e) => {
-        console.log(e)
-      })
-  } 
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   handleSelectRole = (e, role) => {
-    e.preventDefault()
+    e.preventDefault();
 
     this.setState(prevState => ({
       ...prevState,
@@ -76,88 +96,90 @@ class MyProvider extends Component {
         ...prevState.formSignup,
         role
       }
-    }))
+    }));
 
-    this.props.history.push('/signup')
-  }
+    this.props.history.push("/signup");
+  };
 
   handleSignupInput = e => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     this.setState(prevState => ({
       ...prevState,
       formSignup: {
         ...prevState.formSignup,
         [name]: value
       }
-    }))
-  }
+    }));
+  };
 
-  handleLoginInput =e => {
-    const { name, value } = e.target
+  handleLoginInput = e => {
+    const { name, value } = e.target;
     this.setState(prevState => ({
       ...prevState,
       formLogin: {
         ...prevState.formLogin,
         [name]: value
       }
-    }))
-  }
+    }));
+  };
 
   handleSignupSubmit = e => {
-    e.preventDefault()
-    const { name, email, password } = this.state.formSignup
-    AUTH_SERVICE.signup({ name, email, password })
+    e.preventDefault();
+    const { name, email, password, role, property_id } = this.state.formSignup;
+    AUTH_SERVICE.signup({ name, email, password, role, property_id })
       .then(({ data }) => {
         this.setState(prevState => ({
           ...prevState,
           formSignup: {
-            name: '',
-            email: '',
-            password: ''
+            name: "",
+            email: "",
+            password: "",
+            role: "",
+            property_id: ""
           }
-        }))
+        }));
 
-        this.props.history.push('/login')
+        this.props.history.push("/login");
       })
-      .catch((e) => {
-        console.log(e)
-      })
-  }
+      .catch(e => {
+        console.log(e);
+      });
+  };
 
   handleFile = e => {
-    const formData = new FormData()
-    formData.append('photoURL', e.target.files[0])
+    const formData = new FormData();
+    formData.append("photoURL", e.target.files[0]);
     AUTH_SERVICE.uploadPhoto(formData)
       .then(({ data }) => {
-        this.setState({ loggedUser: data.user })
+        this.setState({ loggedUser: data.user });
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
+        console.log(err);
+      });
+  };
 
   handleLoginSubmit = e => {
-    e.preventDefault()
-    const { email, password } = this.state.formLogin
-    AUTH_SERVICE.login({ email, password })
+    e.preventDefault();
+    const { email, password } = this.state.formLogin;
+    AUTH_SERVICE.login({ email, password,  })
       .then(({ data }) => {
         this.setState(prevState => ({
           ...prevState,
           formLogin: {
-            email: '',
-            password: ''
+            email: "",
+            password: ""
           },
           loggedUser: data.user,
           isLoggedIn: true
-        }))
-        this.props.history.push('/profile')
+        }));
+        if(this.state.user.role === "owner"){this.props.history.push("/profile")} 
+        else{this.props.history.push("/tennant")}
       })
-      .catch((err) => {
-        console.log(err)
-        alert('Algo salió mal 🥺😭')
-      })
-  }
-
+      .catch(err => {
+        console.log(err);
+        alert("Algo salió mal 🥺😭");
+      });
+  };
 
   render() {
     const {
@@ -167,10 +189,10 @@ class MyProvider extends Component {
       handleLoginInput,
       handleLoginSubmit,
       handleFile,
-      handleInput, 
+      handleInput,
       handleSubmit,
       handleSelectRole
-    } = this
+    } = this;
     return (
       <MyContext.Provider
         value={{
@@ -181,14 +203,14 @@ class MyProvider extends Component {
           handleLoginInput,
           handleLoginSubmit,
           handleFile,
-          handleInput, 
+          handleInput,
           handleSubmit
         }}
       >
         {this.props.children}
       </MyContext.Provider>
-    )
+    );
   }
 }
 
-export default withRouter(MyProvider)
+export default withRouter(MyProvider);

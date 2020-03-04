@@ -55,7 +55,7 @@ function Profile() {
         <div>
           <Stack spacing={8}>
             <Box p={5} shadow="md" borderWidth="1px">
-              <Image src="../../Assets/lakehouse.jpg" alt="property image"   />
+              <Image src="/places/lakehouse.jpg" alt="property image"   />
               <Heading fontSize="xl">Home</Heading>
               <Text color="orange"> Rent: $32,000</Text>
               <Text mt={4}>
