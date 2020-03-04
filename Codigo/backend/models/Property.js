@@ -1,40 +1,40 @@
-const mongoose = require("mongoose")
-const Schema = mongoose.Schema
-const model = mongoose.model
-const PLM = require("passport-local-mongoose")
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const model = mongoose.model;
 
-const propertySchema = new Schema({
-      name: String,
-      rent: Number,
-      photo: String,
-      bedrooms: Number,
-      bathrooms: Number,
-      lotSize: Number,
-      location: {
-        address: {
-          type: String,
-          required: true
-        },
-        coordinates: {
-          type: [Number],
-          required: true
-        }
+const propertySchema = new Schema(
+  {
+    name: String,
+    description: String,
+    rent: Number,
+    photo: String,
+    bedrooms: Number,
+    bathrooms: Number,
+    lotSize: Number,
+    location: {
+      address: {
+        type: String
       },
-      balance: Number,
-      incomebal: Number,
-      outcomebal: Number,
-      owner: String,
-      tennants: {type:Schema.Types.ObjectId, ref:"User"},
+      coordinates: {
+        type: [Number]
+      }
+    },
+    balance: Number,
+    incomebal: Number,
+    outcomebal: Number,
 
-        placeType: {
-          type: String,
-          enum: ["House", "Apartment", "Other"]
-        }
-      },
-      {
-        timestamps: true,
-        versionkey: false
+    placeType: {
+      type: String,
+      enum: ["House", "Apartment", "Other"]
+    },
 
-      })
+    owner: String,
+    tennants: { type: Schema.Types.ObjectId, ref: "User" }
+  },
+  {
+    timestamps: true,
+    versionkey: false
+  }
+);
 
-    module.exports = model("Property", propertySchema)
+module.exports = model("Property", propertySchema);

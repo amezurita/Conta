@@ -15,7 +15,7 @@ import Balance from "./components/pages/Balance.js";
 import TennantProfile from "./components/pages/TennantProf.js";
 import TennantPropertyProf from "./components/pages/TennantPropertyProf";
 import Chat from "./components/pages/Chat"
-
+import Payment from './components/pages/IssuePayment'
 
 const Router = () => (
   <>
@@ -34,7 +34,8 @@ const Router = () => (
       <Route exact path="/tennant" component={TennantProfile} />
       <Route exact path="/ten-property" component={TennantPropertyProf} />
       <Route exact path="/chat" component={Chat}/>
-      
+      <Route exact path="/payment" component={Payment}/>
+
       <Route component={NotFound} />
     </Switch>
 </>

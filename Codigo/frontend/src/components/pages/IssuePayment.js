@@ -29,34 +29,35 @@ function IssuePayment() {
           <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
             <div>
               <FormControl>
-                <Form submit={context.handleSubmit} title="Issue Payment">
+                <Form submit={context.handleSubmitPayment} title="Issue Payment">
                   <FormControl isRequired>
                     <InputGroup>
                       <Input
-                        onChange={context.handleInput}
+                        onChange={context.handlePaymentInput}
                         name="name"
                         type="text"
-                        placeholder="Property name"
-                        value={context.state.property.payment.name}
-
+                        placeholder="Payment name"
+                        value={context.state.formPayment.name}
                       />
                     </InputGroup>
                   </FormControl>
                   <FormControl isRequired>
                     <InputGroup>
                       <Input
-                        onChange={context.handleInput}
+                        onChange={context.handlePaymentInput}
+                        name={'amount'}
                         type="number" name="amount" placeholder="Payment amount"
-                        value={context.state.property.payment.amount}
+                        value={context.state.formPayment.amount}
                       />
                     </InputGroup>
                   </FormControl>
                   <FormControl isRequired>
                     <InputGroup>
                       <Input
-                        onChange={context.handleInput}
-                        type="text" name="description" placeholder="Description"
-                        value={context.state.property.payment.description}
+                        onChange={context.handlePaymentInput}
+                        type="text"
+                        name="description" placeholder="Description"
+                        value={context.state.formPayment.description}
 
                       />
                     </InputGroup>
