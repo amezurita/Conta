@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Heading, Flex, Button } from "@chakra-ui/core";
+import { Heading, Flex} from "@chakra-ui/core";
 
 function EditProfile() {
   return (

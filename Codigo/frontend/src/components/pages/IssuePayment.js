@@ -1,18 +1,23 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import {
-  Heading,
+
   Flex,
-  Button,
+
   FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText, 
+
   InputGroup,
-  InputLeftAddon,
-  Input,
+
+  Input
+  // Modal,
+  // ModalOverlay,
+  // ModalContent,
+  // ModalHeader,
+  // ModalFooter,
+  // ModalBody,
+  // ModalCloseButton
 } from "@chakra-ui/core";
-import {MyContext} from "../../context";
+import { MyContext } from "../../context";
 import Form from "../Styles/Form";
 
 function IssuePayment() {
@@ -26,7 +31,14 @@ function IssuePayment() {
             textAlign: "center"
           }}
         >
-          <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
+          <Flex
+            w="100vw"
+            h="100vh"
+            align="center"
+            justify="center"
+            wrap="wrap"
+            direction="column"
+          >
             <div>
               <FormControl>
                 <Form submit={context.handleSubmit} title="Issue Payment">
@@ -36,9 +48,8 @@ function IssuePayment() {
                         onChange={context.handleInput}
                         name="name"
                         type="text"
-                        placeholder="Property name"
-                        value={context.state.property.payment.name}
-
+                        placeholder="Payment Subject"
+                        value="miau"
                       />
                     </InputGroup>
                   </FormControl>
@@ -46,8 +57,10 @@ function IssuePayment() {
                     <InputGroup>
                       <Input
                         onChange={context.handleInput}
-                        type="number" name="amount" placeholder="Payment amount"
-                        value={context.state.property.payment.amount}
+                        type="number"
+                        name="amount"
+                        placeholder="Payment amount"
+                        value="miau"
                       />
                     </InputGroup>
                   </FormControl>
@@ -55,18 +68,16 @@ function IssuePayment() {
                     <InputGroup>
                       <Input
                         onChange={context.handleInput}
-                        type="text" name="description" placeholder="Description"
-                        value={context.state.property.payment.description}
-
+                        type="text"
+                        name="description"
+                        placeholder="Tell the tenant a little more about the payment"
+                        value="miau"
                       />
                     </InputGroup>
                   </FormControl>
                 </Form>
               </FormControl>
             </div>
-            <NavLink to="/property">Property</NavLink>
-            <br />
-            <NavLink to="/">Home</NavLink>
           </Flex>
         </div>
       )}

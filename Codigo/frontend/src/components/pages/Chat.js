@@ -1,19 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+
 import {
-  Heading,
+ 
   Flex,
-  Button,
+ 
   InputGroup,
   InputRightAddon,
   Input, 
   Stack, 
   InputLeftAddon, 
-  Icon, Box, Avatar
+  Icon, Box, Avatar, Text
 
 } from "@chakra-ui/core";
 import { MyContext } from "../../context";
-import Form from "../Styles/Form";
+
+import PaymentView from "../pages/PaymentView"
+
 
 function Chat() {
   return (
@@ -23,7 +25,8 @@ function Chat() {
           style={{
             backgroundColor: "white",
             color: "green",
-            textAlign: "center"
+            textAlign: "center",
+            flexDirection: "column"
           }}
         >
           <Flex
@@ -35,9 +38,11 @@ function Chat() {
             direction="column"
           >
            
-              <Stack spacing={4}>
-              <Box w="100vw" h="10vh" bg="blue"></Box>
+           
+              <Stack>
+             
               <Box w="100vw" h="80vh"></Box>
+              <div style={{backgroundColor: "green", width: "100%",  height:"10%"}}><p>Property</p></div>
                 <InputGroup>
                 <InputLeftAddon children={<Icon name="attachment" color="gray.300" />} />
                 <InputLeftAddon children={<Icon name="arrow-up" color="gray.300" />} />
@@ -53,10 +58,18 @@ function Chat() {
                    <InputRightAddon children={<Icon name="arrow-back" color="green.500" />} />
 
                 </InputGroup>
-                <Avatar></Avatar> 
-                <Box>message text</Box>
-                <Avatar></Avatar>
-                <Box> </Box>
+                <Stack spacing={4}>
+                <div style={{display:"flex", flexDirection: "row", border: "1px solid green"}}>
+                
+                    
+                <Avatar/>
+                <Box boxShadow="md" border="green"><Text>Hellooooo!</Text></Box>
+                </div>
+                <div style={{display:"flex", flexDirection: "row", border: "1px solid green"}}>
+                <Avatar/>
+                <Box boxShadow="md"> Ale Issued a payment: <PaymentView></PaymentView></Box>
+                </div>
+                </Stack>
               </Stack>
            
           </Flex>

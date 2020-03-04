@@ -4,9 +4,9 @@ import {
   Flex,
   FormControl,
   InputGroup,
-  InputLeftAddon,
+
   Input,
-  Icon
+
 } from "@chakra-ui/core";
 import Form from "../Styles/Form.js";
 import { NavLink } from "react-router-dom";

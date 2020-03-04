@@ -6,12 +6,12 @@ import {
   Button,
   Avatar,
   Stack,
-  Box,
   Text,
   Image
 } from "@chakra-ui/core";
 import lake from "../../Assets/lakehouse.jpg";
 import context from "../../context"
+import ChatIcon from "../ChatIcon"
 
 
 function Profile() {
@@ -100,6 +100,7 @@ function Profile() {
                 </Button>
           </Stack>
         </div>
+        <NavLink to="/chat"><ChatIcon /></NavLink>
         <NavLink to="/">Home</NavLink>
       </Stack>
     </div>

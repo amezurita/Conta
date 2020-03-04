@@ -1,6 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import ChatIcon from "./components/ChatIcon"
+import { Switch, Route } from "react-router-dom";
 import Home from "./components/pages/Home.js";
 import NotFound from "./components/404/NotFound.js";
 import Choose from "./components/pages/Choose"
@@ -33,6 +32,7 @@ const Router = () => (
       <Route exact path="/property" component={Property} />
       <Route exact path="/tennant" component={TennantProfile} />
       <Route exact path="/ten-property" component={TennantPropertyProf} />
+      
       <Route exact path="/chat" component={Chat}/>
       
       <Route component={NotFound} />

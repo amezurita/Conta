@@ -10,6 +10,7 @@ import {
   Text,
   Image
 } from "@chakra-ui/core";
+import ChatIcon from "../ChatIcon"
 
 function Profile() {
   // function Feature({ title, desc, ...rest }) {
@@ -70,7 +71,7 @@ function Profile() {
           </Stack>
         </div>
 
-
+        <NavLink to="/chat"><ChatIcon /></NavLink>
         <NavLink to="/">Home</NavLink>
       </Flex>
     </div>

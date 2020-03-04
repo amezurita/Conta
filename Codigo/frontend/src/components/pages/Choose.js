@@ -1,6 +1,6 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Flex, Button, Box, Image } from "@chakra-ui/core";
+
+import { Flex, Button, Box} from "@chakra-ui/core";
 import {MyContext} from '../../context'
 
 function Choose() {

@@ -30,12 +30,13 @@ class MyProvider extends Component {
       name: "",
       rent: "",
       desc: "", 
+      tenant:"",
       payments: [{
         name: "", 
         amount:"", 
         description:""
       }], 
-      tenant:""
+      
     }],
     tenantProperty: {
       name: "",

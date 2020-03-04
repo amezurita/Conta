@@ -1,18 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import {
-  Heading,
-  Flex,
-  Button,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText, 
-  InputGroup,
-  InputLeftAddon,
-  Input,
-} from "@chakra-ui/core";
-import {MyContext} from "../../context";
+import { Flex, FormControl, InputGroup, Input } from "@chakra-ui/core";
+import { MyContext } from "../../context";
 import Form from "../Styles/Form";
 
 function CreateProperty() {
@@ -26,7 +15,14 @@ function CreateProperty() {
             textAlign: "center"
           }}
         >
-          <Flex w="100vw" h="100vh" align="center" justify="center" wrap="wrap" direction="column">
+          <Flex
+            w="100vw"
+            h="100vh"
+            align="center"
+            justify="center"
+            wrap="wrap"
+            direction="column"
+          >
             <div>
               <FormControl>
                 <Form submit={context.handleSubmit} title="Create Property">
@@ -38,7 +34,6 @@ function CreateProperty() {
                         type="text"
                         placeholder="Property name"
                         value={context.state.property.name}
-
                       />
                     </InputGroup>
                   </FormControl>
@@ -46,7 +41,9 @@ function CreateProperty() {
                     <InputGroup>
                       <Input
                         onChange={context.handleInput}
-                        type="number" name="rent" placeholder="Rent amount"
+                        type="number"
+                        name="rent"
+                        placeholder="Rent amount"
                         value={context.state.property.rent}
                       />
                     </InputGroup>
@@ -55,9 +52,10 @@ function CreateProperty() {
                     <InputGroup>
                       <Input
                         onChange={context.handleInput}
-                        type="text" name="description" placeholder="Description"
+                        type="text"
+                        name="description"
+                        placeholder="Description"
                         value={context.state.property.description}
-
                       />
                     </InputGroup>
                   </FormControl>

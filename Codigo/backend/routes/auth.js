@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const passport = require('../config/passport');
+const { sendMail } = require("../config/nodemailer")
 
 router.post('/signup', (req, res, next) => {
   User.register(req.body, req.body.password)

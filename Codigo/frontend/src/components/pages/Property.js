@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Heading, Flex, Button, Image, Box, Text, Avatar } from "@chakra-ui/core";
+import { Heading, Flex, Image, Box, Text, Avatar } from "@chakra-ui/core";
 
 function Property() {
   return (
